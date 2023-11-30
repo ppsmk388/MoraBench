@@ -7,8 +7,7 @@ This is the official implementation of [*How Many Validation Labels Do You Need?
 ## Environment
 
 * Python=3.8.18
-* PyTorch=1.10.1
-* numpy=1.20.3
+* numpy=1.24.4
 
 ## Usage
 
