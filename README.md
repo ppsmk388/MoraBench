@@ -63,11 +63,11 @@ The datasets can be downloaded via [this](https://drive.google.com/drive/folders
 
  -->
 
+
+
 # 🔧  Quick examples
 
-All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples).
-
-For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/):
+All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/):
 
 ### Generate Ranking Correction and Optimal Gap
 
