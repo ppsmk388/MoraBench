@@ -1,10 +1,10 @@
 
-
-# MoraBench (**Mo**del **Ra**nking **Bench**mark)
-
 <h1 style="text-align:center">
 <img style="vertical-align:middle" width="200" height="200" src="./images/MoraBench_logo.png" />
 </h1>
+
+# MoraBench (**Mo**del **Ra**nking **Bench**mark)
+
 
 ## 🔧 What is it?
 
