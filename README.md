@@ -3,14 +3,11 @@
 
 
 
-![MoraBench_logo](./images/MoraBench_logo.png)
 
-
-
-
-
+<img src="./images/MoraBench_logo.png" alt="MoraBench_logo" style="zoom:20%;" />
 
 # MoraBench (**Mo**del **Ra**nking **Bench**mark)
+
 
 
 ## 🔧 What is it?
