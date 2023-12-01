@@ -95,7 +95,7 @@ python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_
 #### 2. Calculate the optical gap and ranking correction for different budget ratio for dataset `amazon_review_250_0`:
 
 
-**gegerate hard ensemble result**:
+**generate hard ensemble result**:
 ```sh
 python ./examples/LEMR/main.py 
             --Ensemble_method hard              # ensemble method, hard or soft
@@ -106,7 +106,7 @@ python ./examples/LEMR/main.py
 
 
 
-**gegerate soft ensemble result**:
+**generate soft ensemble result**:
 ```sh
 python ./examples/LEMR/main.py 
             --Ensemble_method soft              # ensemble method, hard or soft
