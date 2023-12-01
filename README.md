@@ -92,35 +92,36 @@ In LEMR framework, all related code can be found in [this](https://github.com/pp
 python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_num 50 
 ```
 
-#### 2. Calculate the optical gap and ranking correction for different budgetratio for dataset `amazon_review_250_0`:
+#### 2. Calculate the optical gap and ranking correction for different budget ratio for dataset `amazon_review_250_0`:
 
 
+**gegerate hard ensemble result**:
 ```sh
 python ./examples/LEMR/main.py 
             --Ensemble_method hard              # ensemble method, hard or soft
             --total_split_number 50             # total split number we used
             --dataset_name amazon_review_250_0  # dataset name
-            --model_committee_type z_score
+            --model_committee_type z_score      # model committee selection type, , z_score or all_model
 ```
 
 
+
+**gegerate soft ensemble result**:
+```sh
+python ./examples/LEMR/main.py 
+            --Ensemble_method soft              # ensemble method, hard or soft
+            --total_split_number 50             # total split number we used
+            --dataset_name amazon_review_250_0  # dataset name
+            --model_committee_type z_score      # model committee selection type, , z_score or all_model
+```
+
+
+#### 3. Results visualization
 
 
 ```sh
-python MoraBench/morabench/generate_split.py --dataset_name amazon_review_250_0 --split_num 50 
+python MoraBench/morabench/plot_result.py --metric rc # rc for ranking correction and og for optimal gap
 ```
-
-
-
-
-###   Results visualization
-
-```sh
-python plot_result.py --metric rc
-```
-
-
-
 
 
 
