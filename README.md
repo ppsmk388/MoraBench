@@ -59,8 +59,8 @@ The datasets can be downloaded via [this](https://drive.google.com/drive/folders
 
 
 A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Dataset:-Format-and-Usage)
-
 <!-- 
+
 ### Weak Supervision:
 
 
@@ -68,10 +68,11 @@ A documentation of dataset format and usage can be found in this [wiki-page](htt
 ### Semi-supervised Learning:
 
 
+
 ### Prompt Selection:
 
-
  -->
+
 
 
 
@@ -95,7 +96,7 @@ python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_
 #### 2. Calculate the optical gap and ranking correction for different budget ratio for dataset `amazon_review_250_0`:
 
 
-<!-- **generate hard ensemble result**: -->
+
 ```sh
 python ./examples/LEMR/main.py 
             --Ensemble_method hard              # ensemble method, hard or soft
@@ -107,14 +108,6 @@ python ./examples/LEMR/main.py
 
 
 
-<!-- **generate soft ensemble result**:
-```sh
-python ./examples/LEMR/main.py 
-            --Ensemble_method soft              # ensemble method, hard or soft
-            --total_split_number 50             # total split number we used
-            --dataset_name amazon_review_250_0  # dataset name
-            --model_committee_type z_score      # model committee selection type, , z_score or all_model
-``` -->
 
 
 #### 3. Results visualization
@@ -147,6 +140,3 @@ We sincerely welcome any contribution to the methods or model set!
     xxx
 }
 ```
-
-
-
