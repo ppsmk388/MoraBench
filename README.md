@@ -47,7 +47,7 @@ source activate MoraBench
 
 The datasets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
 
-<!-- A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Dataset:-Format-and-Usage) -->
+A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Detail-of-model-set)
 
 <!-- 
 
@@ -63,15 +63,11 @@ The datasets can be downloaded via [this](https://drive.google.com/drive/folders
 
  -->
 
-
-
 # 🔧  Quick examples
 
 All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can get its  result by following steps:
 
 ### Generate Ranking Correction and Optimal Gap
-
-
 
 #### 1. Generate 50 sets of randomized splits for dataset `amazon_review_250_0`:
 
