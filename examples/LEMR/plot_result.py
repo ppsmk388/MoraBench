@@ -2,11 +2,13 @@ import matplotlib.gridspec as gridspec
 import copy
 import matplotlib.pyplot as plt
 import argparse
-from conifg import root_path, Ensemble_method_list,ensemble_map,unc_method_map,\
+from conifg import root_path, ensemble_map,unc_method_map,\
     usb_dataset_dict_map,usb_dataset_dict
 from utils import plot_ratio_lines,read_pkl_file
 
-
+ratio_list = [0.0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55,
+              0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, ]
+Ensemble_method_list = ['hard', 'soft']
 
 dataset_dict_map = usb_dataset_dict_map
 dataset_dict = usb_dataset_dict

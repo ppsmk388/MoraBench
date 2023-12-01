@@ -9,7 +9,15 @@ from utils import setup_seed, gen_ensemble_matrix,gen_ensemble_result_from_matri
     compute_acc,create_zeros_matrix_same_shape,\
     sort_dict_by_value_desc,sort_list_by_dict,string_list_correlation
 
-from conifg import root_path, ratio_list, Ensemble_method_list,Acquisition_list,threshold
+from conifg import root_path
+
+
+ratio_list = [0.0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55,
+              0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, ]
+Ensemble_method_list = ['hard', 'soft']
+Acquisition_list = ['Entropy', 'Uncertainty', 'Margin', 'False', ]
+threshold = -2.8
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", type=int,default=0, help="seed")
