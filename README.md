@@ -101,7 +101,7 @@ python ./examples/LEMR/main.py
             --Ensemble_method hard              # ensemble method, hard or soft
             --total_split_number 50             # total split number we used
             --dataset_name amazon_review_250_0  # dataset name
-            --model_committee_type z_score      # model committee selection type, , z_score or all_model
+            --model_committee_type z_score      # model committee selection type, z_score or all_model
 ```
 
 
