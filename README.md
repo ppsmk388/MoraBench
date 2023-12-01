@@ -58,7 +58,7 @@ source activate MoraBench
 The datasets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
 
 
-A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Dataset:-Format-and-Usage)
+<!-- A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Dataset:-Format-and-Usage) -->
 <!-- 
 
 ### Weak Supervision:
