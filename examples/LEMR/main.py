@@ -4,21 +4,18 @@ import numpy as np
 import os
 import pickle
 import argparse
-from utils import setup_seed, gen_ensemble_matrix,gen_ensemble_result_from_matrix,\
-    accuracy,pesudo_gen, pesudo_gen_all, Random_Few_shot_change,Few_shot_change,\
+from functions import  gen_ensemble_matrix,gen_ensemble_result_from_matrix,\
+    pesudo_gen, pesudo_gen_all, Random_Few_shot_change,Few_shot_change,\
     compute_acc,create_zeros_matrix_same_shape,\
     sort_dict_by_value_desc,sort_list_by_dict,string_list_correlation
-
-from conifg import root_path
-
+from morabench.utils import setup_seed,accuracy,read_pkl_file
+from morabench.conifg import root_path
 
 ratio_list = [0.0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55,
               0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, ]
 Ensemble_method_list = ['hard', 'soft']
 Acquisition_list = ['Entropy', 'Uncertainty', 'Margin', 'False', ]
 threshold = -2.8
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", type=int,default=0, help="seed")
 parser.add_argument("--Ensemble_method_id", type=int,default=1, help="Ensemble_method_id")
@@ -29,34 +26,23 @@ args = parser.parse_args()
 dataset_name = args.dataset_name
 setup_seed(args.seed)
 result_save_path = f'{root_path}/Extracting_information_data/{dataset_name}'
-with open(f'{result_save_path}/result.pkl', 'rb') as f:
-    dataset_matrix_set = pickle.load(f)
+dataset_matrix_set = read_pkl_file(f'{result_save_path}/result.pkl')
 dataset_matrix_set[dataset_name]['labels'] = dataset_matrix_set[dataset_name]['labels'] .cpu().numpy()
-
 model_to_idx = {}
 total_split_number = args.total_split_number
 Ensemble_method = Ensemble_method_list[args.Ensemble_method_id]
-
 img_data_save_dict = {}
 img_data_save_dict['rc'] = {}
 img_data_save_dict['og'] = {}
-
 optimal_gap_value_dict = {}
 for acq_method in Acquisition_list:
     optimal_gap_value_dict[f'{acq_method}'] = np.array([])
-
-
 ranking_correction_value_dict = {}
 for acq_method in Acquisition_list:
     ranking_correction_value_dict[f'{acq_method}'] = np.array([])
-
-
-
 for split_num in tqdm.tqdm(range(total_split_number)):
-    with open(f'{root_path}/Extracting_information_data/{dataset_name}/val_split.pkl', 'rb') as f:
-        val_indices_list = pickle.load(f)
-    with open(f'{root_path}/Extracting_information_data/{dataset_name}/test_split.pkl', 'rb') as f:
-        test_indices_list = pickle.load(f)
+    val_indices_list = read_pkl_file(f'{root_path}/Extracting_information_data/{dataset_name}/val_split.pkl')
+    test_indices_list = read_pkl_file(f'{root_path}/Extracting_information_data/{dataset_name}/test_split.pkl')
     val_indices, test_indices = val_indices_list[dataset_name][split_num], test_indices_list[dataset_name][split_num]
     Soft_ensemble_dict = copy.deepcopy(dataset_matrix_set[dataset_name]['Soft_ensemble_dict'])
     Hard_ensemble_dict = copy.deepcopy(dataset_matrix_set[dataset_name]['Hard_ensemble_dict'])
@@ -76,7 +62,6 @@ for split_num in tqdm.tqdm(range(total_split_number)):
     result_dict_for_plot = {}
     for acq_method in Acquisition_list:
         result_dict_for_plot[f'{acq_method}'] = {}
-
     for Few_shot_if in Acquisition_list:
         for ratio in ratio_list:
             ensemble_result_distribution = copy.deepcopy(result_distribution[:, val_indices, :])
@@ -102,10 +87,7 @@ for split_num in tqdm.tqdm(range(total_split_number)):
                                                                           labeling_budget_ratio=copy.deepcopy(ratio),
                                                                           Uncertainty_sampling_strategy = Few_shot_if,
                                                                           )
-
-
             ground_truth_distribution = copy.deepcopy(ensemble_result_distribution)
-
             model_ranking_tmp_value_save_softsensmble = {}
             for model_name in Model_result_dict:
                 model_output_distribution = Model_result_dict[model_name]
@@ -150,75 +132,52 @@ for split_num in tqdm.tqdm(range(total_split_number)):
     acq_method_rc_list = {}
     for acq_method in Acquisition_list:
         acq_method_rc_list[f'{acq_method}']=[]
-
     for ratio in ratio_list:
         for acq_method in Acquisition_list:
             acq_method_rc_list[f'{acq_method}'].append(result_dict_for_plot[f'{acq_method}'][ratio]['rank_correlation'])
-
     for acq_method in Acquisition_list:
         if len(ranking_correction_value_dict[f'{acq_method}']) == 0:
             ranking_correction_value_dict[f'{acq_method}'] =np.array(acq_method_rc_list[f'{acq_method}'])
-
         else:
             ranking_correction_value_dict[f'{acq_method}'] += np.array(acq_method_rc_list[f'{acq_method}'])
-
     acq_method_og_list = {}
     for acq_method in Acquisition_list:
         acq_method_og_list[f'{acq_method}']=[]
-
     for ratio in ratio_list:
         for acq_method in Acquisition_list:
             acq_method_og_list[f'{acq_method}'].append(result_dict_for_plot[f'{acq_method}'][ratio]['optimal_gap'])
-
-
     for acq_method in Acquisition_list:
         if len(optimal_gap_value_dict[f'{acq_method}']) == 0:
             optimal_gap_value_dict[f'{acq_method}'] =np.array(acq_method_og_list[f'{acq_method}'])
-
         else:
             optimal_gap_value_dict[f'{acq_method}'] += np.array(acq_method_og_list[f'{acq_method}'])
-
-
 rc_metric_list = []
 for acq_method in Acquisition_list:
     rc_metric_list.append(ranking_correction_value_dict[f'{acq_method}']/ total_split_number)
-
 img_data_save_dict['rc'][dataset_name] = {
     'ratio_list':ratio_list,
     'all_metric_list':rc_metric_list,
     'name_metric_list':Acquisition_list,
     'sub_name':dataset_name,
 }
-
-
-
-
 og_metric_list = []
 for acq_method in Acquisition_list:
     og_metric_list.append(optimal_gap_value_dict[f'{acq_method}']/ total_split_number)
-
 img_data_save_dict['og'][dataset_name] = {
     'ratio_list':ratio_list,
     'all_metric_list':og_metric_list,
     'name_metric_list':Acquisition_list,
     'sub_name':dataset_name,
 }
-
 if args.model_committee_type == 'z_score':
     img_data_save_path = f'{root_path}/Extracting_information_data/dataset_name_{dataset_name}/' \
                          f'Ensemble_method_{Ensemble_method}/seed_{args.seed}/'
 else:
     img_data_save_path = f'{root_path}/Extracting_information_data/all_model/dataset_name_{dataset_name}/' \
                          f'Ensemble_method_{Ensemble_method}/seed_{args.seed}/'
-
-
-
 print(img_data_save_path)
 if not os.path.exists(img_data_save_path):
     os.makedirs(img_data_save_path)
 
-
 with open(f'{img_data_save_path}draw_image_data.pkl', 'wb') as f:
     pickle.dump(img_data_save_dict, f)
-
-

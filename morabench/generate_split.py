@@ -2,8 +2,11 @@ import pickle
 import numpy as np
 import os
 import argparse
-from conifg import root_path
-from utils import setup_seed
+from morabench.conifg  import root_path
+from morabench.utils  import setup_seed,read_pkl_file
+
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset_name", type=str,default='story', help="dataset_name")
 parser.add_argument("--seed", type=int,default=42, help="seed")
@@ -13,8 +16,7 @@ setup_seed(args.seed)
 dataset_name = args.dataset_name
 split_num = args.split_num
 result_save_path = f'{root_path}/Extracting_information_data/{dataset_name}'
-with open(f'{result_save_path}/result.pkl', 'rb') as f:
-    dataset_matrix_set = pickle.load(f)
+dataset_matrix_set = read_pkl_file(f'{result_save_path}/result.pkl')
 val_num = len(dataset_matrix_set[dataset_name]['labels'])
 model_ranking_result = {}
 val_indices_list = {}
