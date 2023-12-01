@@ -13,12 +13,11 @@ from morabench.conifg import root_path
 
 ratio_list = [0.0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55,
               0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0, ]
-Ensemble_method_list = ['hard', 'soft']
 Acquisition_list = ['Entropy', 'Uncertainty', 'Margin', 'False', ]
 threshold = -2.8
 parser = argparse.ArgumentParser()
 parser.add_argument("--seed", type=int,default=0, help="seed")
-parser.add_argument("--Ensemble_method_id", type=int,default=1, help="Ensemble_method_id")
+parser.add_argument("--Ensemble_method", type=str,default='hard', help="Ensemble_method, hard or soft")
 parser.add_argument("--total_split_number", type=int,default=50, help="total_split_number")
 parser.add_argument("--dataset_name", type=str,default='story', help="dataset_name")
 parser.add_argument("--model_committee_type", type=str,default='z_score', help="model_committee_type")
@@ -30,7 +29,7 @@ dataset_matrix_set = read_pkl_file(f'{result_save_path}/result.pkl')
 dataset_matrix_set[dataset_name]['labels'] = dataset_matrix_set[dataset_name]['labels'] .cpu().numpy()
 model_to_idx = {}
 total_split_number = args.total_split_number
-Ensemble_method = Ensemble_method_list[args.Ensemble_method_id]
+Ensemble_method = args.Ensemble_method
 img_data_save_dict = {}
 img_data_save_dict['rc'] = {}
 img_data_save_dict['og'] = {}

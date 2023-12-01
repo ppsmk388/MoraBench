@@ -78,13 +78,40 @@ A documentation of dataset format and usage can be found in this [wiki-page](htt
 # 🔧  Quick examples
 
 
-
-
-
 ### Generate Ranking Correction and Optimal Gap
+
+In LEMR framework, all related code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR).
+
+
+
+#### 1. Generate 50 sets of randomized splits for dataset `amazon_review_250_0`:
+
+
+
 ```sh
-python main.py --dataset_name story
+python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_num 50 
 ```
+
+#### 2. Calculate the optical gap and ranking correction for different budgetratio for dataset `amazon_review_250_0`:
+
+
+```sh
+python ./examples/LEMR/main.py 
+            --dataset_name amazon_review_250_0 
+            --Ensemble_method_id 0
+            --total_split_number 50 
+```
+
+
+
+
+```sh
+python MoraBench/morabench/generate_split.py --dataset_name amazon_review_250_0 --split_num 50 
+```
+
+
+
+
 ###   Results visualization
 
 ```sh
