@@ -97,9 +97,10 @@ python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_
 
 ```sh
 python ./examples/LEMR/main.py 
-            --dataset_name amazon_review_250_0 
-            --Ensemble_method_id 0
-            --total_split_number 50 
+            --Ensemble_method hard              # ensemble method, hard or soft
+            --total_split_number 50             # total split number we used
+            --dataset_name amazon_review_250_0  # dataset name
+            --model_committee_type z_score
 ```
 
 

@@ -20,7 +20,7 @@ parser.add_argument("--seed", type=int,default=0, help="seed")
 parser.add_argument("--Ensemble_method", type=str,default='hard', help="Ensemble_method, hard or soft")
 parser.add_argument("--total_split_number", type=int,default=50, help="total_split_number")
 parser.add_argument("--dataset_name", type=str,default='story', help="dataset_name")
-parser.add_argument("--model_committee_type", type=str,default='z_score', help="model_committee_type")
+parser.add_argument("--model_committee_type", type=str,default='z_score', help="model_committee_type, z_score or all_model")
 args = parser.parse_args()
 dataset_name = args.dataset_name
 setup_seed(args.seed)
