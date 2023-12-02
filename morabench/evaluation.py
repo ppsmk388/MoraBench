@@ -16,8 +16,8 @@ def ranking_correction_comp(list1, list2):
     return correlation_coefficient
 
 
-def optimal_gap_comp(pseudo_label_test_selection,full_label_test_selection,test_labels):
-    acc_ensemble_result = accuracy(np.array([pseudo_label_test_selection]), test_labels)
-    acc_label_result = accuracy(np.array([full_label_test_selection]), test_labels)
+def optimal_gap_comp(list1,list2,test_labels):
+    acc_ensemble_result = accuracy(np.array([list1]), test_labels)
+    acc_label_result = accuracy(np.array([list2]), test_labels)
     optimal_gap = acc_ensemble_result - acc_label_result
     return optimal_gap

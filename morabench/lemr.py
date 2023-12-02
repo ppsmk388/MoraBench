@@ -119,7 +119,7 @@ def LEMR(Model_set, seed, Ensemble_method, total_split_number, dataset_name,mode
                 result_dict_for_plot[Few_shot_if][ratio]['rank_correlation'] = rank_correlation
 
                 # og +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                optimal_gap = optimal_gap_comp(pseudo_label_test_selection,full_label_test_selection,test_labels)
+                optimal_gap = optimal_gap_comp(list1=pseudo_label_test_selection,list2=full_label_test_selection,test_labels=test_labels)
                 result_dict_for_plot[Few_shot_if][ratio]['optimal_gap'] = optimal_gap
 
         acq_method_rc_list = {}
