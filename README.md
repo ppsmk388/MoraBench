@@ -68,7 +68,7 @@ We employed large language models and various prompts to generate diverse output
 
 
 
-MoraBench assembles outputs from models operating under these three learning paradigms.
+
 The table below shows the initial model set included in MoraBench and the total size of the validation set plus the test set, i.e., **\# Data**.  The number after the dataset of Semi-supervised Learning indicates the number of labels used in semi-supervised training stage.
 
 
