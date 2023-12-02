@@ -47,6 +47,38 @@ The datasets can be downloaded via [this](https://drive.google.com/drive/folders
 
 A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Detail-of-model-set).
 
+
+|     Training setting     	|            Task            	|        Dataset       	| Model number 	| # Data 	|
+|:------------------------:	|:--------------------------:	|:--------------------:	|:------------:	|:------:	|
+|     Weak Supervision     	|  Sentiment Classification  	|         Yelp         	|      480     	|  3800  	|
+|                          	|  Sentiment Classification  	|         IMDB         	|      480     	|  2500  	|
+|                          	|     Spam Classification    	|          SMS         	|      480     	|   500  	|
+|                          	|     Spam Classification    	|         IMDB         	|      480     	|  2500  	|
+|                          	|    Topic Classification    	|        AGNews        	|      159     	|  12000 	|
+|                          	|   Question Classification  	|         Trec         	|      45      	|   500  	|
+|                          	|                            	|                      	|              	|        	|
+|                          	|                            	|                      	|              	|        	|
+| Semi-supervised Learning 	|  Sentiment Classification  	|       IMDB (20)      	|      400     	|  2000  	|
+|                          	|  Sentiment Classification  	|      IMDB (100)      	|      400     	|  2000  	|
+|                          	|  sentiment classification  	|   Yelp Review (250)  	|      400     	|  25000 	|
+|                          	|  sentiment classification  	|  Yelp Review (1000)  	|      400     	|  25000 	|
+|                          	|  sentiment classification  	|  Amazon Review (250) 	|      400     	|  25000 	|
+|                          	|  Sentiment Classification  	| Amazon Review (1000) 	|      400     	|  25000 	|
+|                          	|    Topic Classification    	|  Yahoo! Answer (500) 	|      400     	|  50000 	|
+|                          	|    Topic Classification    	| Yahoo! Answer (2000) 	|      400     	|  50000 	|
+|                          	|    Topic Classification    	|      AGNews (40)     	|      400     	|  10000 	|
+|                          	|    Topic Classification    	|     AGNews (200)     	|      400     	|  10000 	|
+|                          	|                            	|                      	|              	|        	|
+|                          	|                            	|                      	|              	|        	|
+|     Prompt Selection     	|   Coreference Resolution   	|          WSC         	|      10      	|   104  	|
+|                          	|  Word Sense Disambiguation 	|          WiC         	|      10      	|   638  	|
+|                          	|     Sentence Completion    	|         Story        	|       6      	|  3742  	|
+|                          	| Natural Language Inference 	|          CB          	|      15      	|   56   	|
+|                          	| Natural language Inference 	|          RTE         	|      10      	|   277  	|
+|                          	| Natural language Inference 	|         ANLI1        	|      15      	|  1000  	|
+|                          	| Natural language Inference 	|         ANLI2        	|      15      	|  1000  	|
+|                          	| Natural language Inference 	|         ANLI3        	|      15      	|  1200  	|
+
 <!-- 
 
 ### Weak Supervision:
