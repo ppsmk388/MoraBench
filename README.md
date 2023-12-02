@@ -10,7 +10,7 @@
 
 ## 🏁 What is model ranking?
 
-**Model Ranking** is to rank models from a existing model set according to their performance for target task.
+**Model Ranking** is to rank models from a set of **trained models** according to their performance for the target task. Traditionally, people use a **fully-labeled validation set** to rank the models, here we explore how to do model ranking with limited annotation budget.
 
 ## 🔧 Installation
 
