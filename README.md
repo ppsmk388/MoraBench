@@ -8,15 +8,6 @@
 
 **MoraBench** (**Mo**del **Ra**nking **Bench**mark) is a **benchmark platform** comprises a collection of model outputs generated under diverse scenarios. It also provides a **common and easy framework**, for development and evaluation of your own model ranking method within the benchmark.
 
-For more information, checkout our publications:
-
-If you find this repository helpful, feel free to cite our publication:
-
-```
-@inproceedings{
-    xxx
-}
-```
 
 ## 🔧 What is model ranking?
 
