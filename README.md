@@ -41,11 +41,35 @@ pip install -r requirements.txt
 
 <!-- If this not working or you want to use only a subset of modules of Wrench, check out this [wiki page](https://github.com/JieyuZ2/wrench/wiki/Environment-Installation) -->
 
+
 ## 📊 Available Datasets
 
-The datasets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
+MoraBench assembles outputs from models operating under different learning paradigms (detailed in Table~\ref{tab:dataset_sum}):
 
-A documentation of dataset format and usage can be found in this [wiki-page](https://github.com/ppsmk388/MoraBench/wiki/Detail-of-model-set).
+
+### Weak Supervision:
+
+We generated model outputs within a weak supervision setting using the [WRENCH](https://github.com/JieyuZ2/wrench) framework. We generate model outputs across 48 distinct weak supervision configurations on five datasets: SMS, AGNews, Yelp, IMDB, Trec.
+
+
+
+### Semi-supervised Learning:
+
+Leveraging the [USB](http://github.com/microsoft/Semi-supervised-learning) benchmark, model outputs were obtained from 12 semi-supervised methods across five datasets: IMDB, Amazon Review, Yelp Review, AGNews and Yahoo! Answer. 
+
+
+
+
+### Prompt Selection:
+
+We employed large language models and various prompts to generate diverse outputs, assessed using the [T0](http://github.com/bigscience-workshop/T0) benchmark.
+
+
+
+
+
+MoraBench assembles outputs from models operating under these three learning paradigms.
+The table below shows the initial model set included in MoraBench and the total size of the validation set plus the test set, i.e., **\# Data**.  The number after the dataset of Semi-supervised Learning indicates the number of labels used in semi-supervised training stage.
 
 
 |     Training setting     	|            Task            	|        Dataset       	| Model number 	| # Data 	|
@@ -79,19 +103,17 @@ A documentation of dataset format and usage can be found in this [wiki-page](htt
 |                          	| Natural language Inference 	|         ANLI2        	|      15      	|  1000  	|
 |                          	| Natural language Inference 	|         ANLI3        	|      15      	|  1200  	|
 
-<!-- 
-
-### Weak Supervision:
 
 
-
-### Semi-supervised Learning:
+All these model sets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
 
 
 
-### Prompt Selection:
 
- -->
+
+
+
+
 
 # 📙  Quick examples
 
