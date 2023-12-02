@@ -44,7 +44,7 @@ pip install -r requirements.txt
 
 ## 📊 Available Datasets
 
-MoraBench assembles outputs from models operating under different learning paradigms (detailed in Table~\ref{tab:dataset_sum}):
+MoraBench assembles outputs from models operating under different learning paradigms:
 
 
 ### Weak Supervision:
