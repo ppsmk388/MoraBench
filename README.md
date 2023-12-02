@@ -117,7 +117,8 @@ Details of these datasets can be found in our [paper](), and all these model set
 
 # 📙  Quick examples
 
-All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result by following steps:
+All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). 
+For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result by following steps:
 
 ### Generate plot data
 
