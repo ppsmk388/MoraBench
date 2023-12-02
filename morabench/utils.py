@@ -180,33 +180,6 @@ def doing_few_shot_change(arr, labels, index_list):
 
 
 
-def True_label_replacement(ensemble_result_distribution, update_budget, labeling_data_index_list,Uncertainty_sampling_strategy,labeling_budget_max_number,labels):
-    if Uncertainty_sampling_strategy == 'Entropy':
-        Few_shot_Soft_ensemble_result_distribution = normalized_entropy(copy.deepcopy(ensemble_result_distribution))
-    elif Uncertainty_sampling_strategy == 'Uncertainty':
-        Few_shot_Soft_ensemble_result_distribution = compute_uncertainty(copy.deepcopy(ensemble_result_distribution))
-    elif Uncertainty_sampling_strategy == 'Margin':
-        Few_shot_Soft_ensemble_result_distribution = compute_margin(copy.deepcopy(ensemble_result_distribution))
-    N = update_budget
-    if N + len(labeling_data_index_list) > labeling_budget_max_number:
-        N = labeling_budget_max_number - len(labeling_data_index_list)
-    Gt_index = max_k_indices(Few_shot_Soft_ensemble_result_distribution, N)
-    length_labeling_data_index_list_origin = len(labeling_data_index_list)
-    Gt_index = Gt_index_update(array1=np.array(labeling_data_index_list), array2=Gt_index)
-    length_labeling_data_index_list_change = len(Gt_index)
-    if (length_labeling_data_index_list_origin == length_labeling_data_index_list_change) and (len(labeling_data_index_list) != 0):
-        Gt_index_compensation = max_k_indices_except(arr=copy.deepcopy(Few_shot_Soft_ensemble_result_distribution), k=N, sorted_indices=copy.deepcopy(Gt_index))
-        Gt_index = Gt_index_update(array1=copy.deepcopy(Gt_index_compensation), array2=copy.deepcopy(Gt_index))
-    if (length_labeling_data_index_list_change - length_labeling_data_index_list_origin < N) and (length_labeling_data_index_list_change - length_labeling_data_index_list_origin != 0):
-
-        Gt_index_compensation = max_k_indices_except(arr=copy.deepcopy(Few_shot_Soft_ensemble_result_distribution),
-                                                     k=N - length_labeling_data_index_list_change + length_labeling_data_index_list_origin,
-                                                     sorted_indices=copy.deepcopy(Gt_index))
-        Gt_index = Gt_index_update(array1=copy.deepcopy(Gt_index_compensation), array2=copy.deepcopy(Gt_index))
-    ensemble_result_distribution = doing_few_shot_change(arr=copy.deepcopy(ensemble_result_distribution), labels=labels, index_list=Gt_index)
-    return np.squeeze(ensemble_result_distribution), Gt_index
-
-
 def filter_and_preserve_labels(result_data_save_dict, model_acc_dict_filter):
     filtered_dict = {}
     filtered_dict.update({key: value for key, value in result_data_save_dict.items() if key in model_acc_dict_filter})
@@ -262,8 +235,54 @@ def outlier_model_remove(result_dict, threshold):
 
 
 
+def Pseudo_label_Generation(model_hub,Model_result_dict):
+    pseudo_label = calculate_ensemble_label(copy.deepcopy(model_hub))
+    model_hub = copy.deepcopy(Model_result_dict)
+    return pseudo_label, model_hub
 
 
+
+
+
+def Active_Label_Acquisition(ensemble_result_distribution, update_budget, labeling_data_index_list,Uncertainty_sampling_strategy,labeling_budget_max_number,labels):
+    if Uncertainty_sampling_strategy == 'Entropy':
+        Few_shot_Soft_ensemble_result_distribution = normalized_entropy(copy.deepcopy(ensemble_result_distribution))
+    elif Uncertainty_sampling_strategy == 'Uncertainty':
+        Few_shot_Soft_ensemble_result_distribution = compute_uncertainty(copy.deepcopy(ensemble_result_distribution))
+    elif Uncertainty_sampling_strategy == 'Margin':
+        Few_shot_Soft_ensemble_result_distribution = compute_margin(copy.deepcopy(ensemble_result_distribution))
+    N = update_budget
+    if N + len(labeling_data_index_list) > labeling_budget_max_number:
+        N = labeling_budget_max_number - len(labeling_data_index_list)
+    Gt_index = max_k_indices(Few_shot_Soft_ensemble_result_distribution, N)
+    length_labeling_data_index_list_origin = len(labeling_data_index_list)
+    Gt_index = Gt_index_update(array1=np.array(labeling_data_index_list), array2=Gt_index)
+    length_labeling_data_index_list_change = len(Gt_index)
+    if (length_labeling_data_index_list_origin == length_labeling_data_index_list_change) and (len(labeling_data_index_list) != 0):
+        Gt_index_compensation = max_k_indices_except(arr=copy.deepcopy(Few_shot_Soft_ensemble_result_distribution), k=N, sorted_indices=copy.deepcopy(Gt_index))
+        Gt_index = Gt_index_update(array1=copy.deepcopy(Gt_index_compensation), array2=copy.deepcopy(Gt_index))
+    if (length_labeling_data_index_list_change - length_labeling_data_index_list_origin < N) and (length_labeling_data_index_list_change - length_labeling_data_index_list_origin != 0):
+
+        Gt_index_compensation = max_k_indices_except(arr=copy.deepcopy(Few_shot_Soft_ensemble_result_distribution),
+                                                     k=N - length_labeling_data_index_list_change + length_labeling_data_index_list_origin,
+                                                     sorted_indices=copy.deepcopy(Gt_index))
+        Gt_index = Gt_index_update(array1=copy.deepcopy(Gt_index_compensation), array2=copy.deepcopy(Gt_index))
+    ensemble_result_distribution = doing_few_shot_change(arr=copy.deepcopy(ensemble_result_distribution), labels=labels, index_list=Gt_index)
+    return np.squeeze(ensemble_result_distribution), Gt_index
+
+
+
+
+def Model_Committee_Selection(labeling_data_index_list,Gt_index,model_hub,update_pseudo_label,threshold):
+    merged_array = np.concatenate((np.array(labeling_data_index_list), copy.deepcopy(Gt_index))).astype(int)
+    labeling_data_index_list, _ = np.unique(merged_array, return_counts=True)
+    labeling_data_index_list = labeling_data_index_list.tolist()
+    model_hub_acc_dict = calculate_accuracy(copy.deepcopy(model_hub), copy.deepcopy(update_pseudo_label))
+    model_acc_dict_filter, break_P = outlier_model_remove(copy.deepcopy(model_hub_acc_dict),
+                                                          threshold=threshold,
+                                                          )
+    model_hub = filter_and_preserve_labels(copy.deepcopy(model_hub), copy.deepcopy(model_acc_dict_filter))
+    return labeling_data_index_list, model_hub
 
 
 def pesudo_gen(labels, Model_result_dict, labeling_budget_ratio, Uncertainty_sampling_strategy='Entropy',threshold=-2.8):
@@ -273,26 +292,26 @@ def pesudo_gen(labels, Model_result_dict, labeling_budget_ratio, Uncertainty_sam
         batch_size_labeling_num = int(labeling_budget_max_number / 10)
         labeling_data_index_list = []
         model_hub = copy.deepcopy(Model_result_dict)
-        len_origin = None
         while len(labeling_data_index_list) < labeling_budget_max_number:
-            pseudo_label = calculate_ensemble_label(copy.deepcopy(model_hub))
-            model_hub = copy.deepcopy(Model_result_dict)
-            update_pseudo_label, Gt_index = True_label_replacement(ensemble_result_distribution=copy.deepcopy(pseudo_label),
+            ##################################################################################################################
+            # Step 1: Pseudo_label_Generation
+            pseudo_label, model_hub = Pseudo_label_Generation(model_hub=model_hub,
+                                                              Model_result_dict=Model_result_dict)
+            ##################################################################################################################
+            # Step 2: Active_Label_Acquisition
+            update_pseudo_label, Gt_index = Active_Label_Acquisition(ensemble_result_distribution=copy.deepcopy(pseudo_label),
                                                                    update_budget=batch_size_labeling_num,
                                                                    labeling_data_index_list=labeling_data_index_list,
                                                                    Uncertainty_sampling_strategy=Uncertainty_sampling_strategy,
                                                                    labeling_budget_max_number=labeling_budget_max_number,
                                                                    labels=labels)
-            merged_array = np.concatenate((np.array(labeling_data_index_list), copy.deepcopy(Gt_index))).astype(int)
-            labeling_data_index_list, _ = np.unique(merged_array, return_counts=True)
-            labeling_data_index_list = labeling_data_index_list.tolist()
-            model_hub_acc_dict = calculate_accuracy(copy.deepcopy(model_hub), copy.deepcopy(update_pseudo_label))
-            if len_origin == None:
-                len_origin = len(copy.deepcopy(model_hub_acc_dict))
-            model_acc_dict_filter, break_P = outlier_model_remove(copy.deepcopy(model_hub_acc_dict),
-                                                                  threshold=threshold,
-                                                                  )
-            model_hub = filter_and_preserve_labels(copy.deepcopy(model_hub), copy.deepcopy(model_acc_dict_filter))
+            ##################################################################################################################
+            # Step 3: Model_Committee_Selection
+            labeling_data_index_list, model_hub = Model_Committee_Selection(labeling_data_index_list=labeling_data_index_list,
+                                                                            Gt_index=Gt_index,
+                                                                            model_hub=model_hub,
+                                                                            update_pseudo_label=update_pseudo_label,
+                                                                            threshold=threshold)
         ensemble_result_distribution = calculate_ensemble_label(dict_dict=copy.deepcopy(model_hub))
         ensemble_result_distribution = doing_few_shot_change(arr=copy.deepcopy(ensemble_result_distribution), labels=labels, index_list=labeling_data_index_list)
         return ensemble_result_distribution
@@ -308,7 +327,7 @@ def pesudo_gen_all(labels, Model_result_dict, labeling_budget_ratio, Uncertainty
     model_hub = copy.deepcopy(Model_result_dict)
     pseudo_label = calculate_ensemble_label(copy.deepcopy(model_hub))
     model_hub = copy.deepcopy(Model_result_dict)
-    update_pseudo_label, Gt_index = True_label_replacement(ensemble_result_distribution=copy.deepcopy(pseudo_label),
+    update_pseudo_label, Gt_index = Active_Label_Acquisition(ensemble_result_distribution=copy.deepcopy(pseudo_label),
                                                            update_budget=batch_size_labeling_num,
                                                            labeling_data_index_list=labeling_data_index_list,
                                                            Uncertainty_sampling_strategy=Uncertainty_sampling_strategy,
