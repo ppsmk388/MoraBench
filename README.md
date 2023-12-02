@@ -118,13 +118,13 @@ Details of these datasets can be found in our [paper](), and all these model set
 # 📙  Quick examples
 
 All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). 
-For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result by following steps:
-
-### Generate plot data
+For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result of prompt selection setting by following steps:
 
 
 
-#### 1. Generate plot data for prompt selection setting:
+
+
+### 1. Generate plot data:
 
 We can directly run . /examples/run.sh
 
@@ -176,7 +176,7 @@ python ./examples/LEMR/main.py
             --seed 0
 ``` -->
 
-#### 2. Results visualization
+### 2. Results visualization
 
 ```sh
 python ./examples/LEMR/lemr_show_result.py --metric rc # rc for ranking correction and og for optimal gap
