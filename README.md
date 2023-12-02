@@ -72,7 +72,7 @@ MoraBench assembles outputs from models operating under these three learning par
 The table below shows the initial model set included in MoraBench and the total size of the validation set plus the test set, i.e., **\# Data**.  The number after the dataset of Semi-supervised Learning indicates the number of labels used in semi-supervised training stage.
 
 
-|     Training setting     	|            Task            	|        Dataset       	| Model number 	| # Data 	|
+|     Training Setting     	|            Task Type        	|        Dataset       	| Model Number 	| # Data 	|
 |:------------------------:	|:--------------------------:	|:--------------------:	|:------------:	|:------:	|
 |     Weak Supervision     	|  Sentiment Classification  	|         Yelp         	|      480     	|  3800  	|
 |                          	|  Sentiment Classification  	|         IMDB         	|      480     	|  2500  	|
