@@ -105,7 +105,7 @@ The table below shows the initial model set included in MoraBench and the total 
 
 
 
-All these model sets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
+Details of these datasets can be found in our [paper](), and all these model sets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing).
 
 
 
