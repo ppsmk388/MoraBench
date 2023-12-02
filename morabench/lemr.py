@@ -145,10 +145,6 @@ def LEMR(Model_set, seed, Ensemble_method, total_split_number, dataset_name,mode
             else:
                 optimal_gap_value_dict[f'{acq_method}'] += np.array(acq_method_og_list[f'{acq_method}'])
 
-
-    
-
-
     rc_metric_list = []
     for acq_method in Acquisition_list:
         rc_metric_list.append(ranking_correction_value_dict[f'{acq_method}'] / total_split_number)
@@ -169,9 +165,6 @@ def LEMR(Model_set, seed, Ensemble_method, total_split_number, dataset_name,mode
     }
     with open(f'{img_data_save_path}draw_image_data.pkl', 'wb') as f:
         pickle.dump(img_data_save_dict, f)
-
-
-
 
 
 

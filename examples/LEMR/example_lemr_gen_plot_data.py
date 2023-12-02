@@ -1,15 +1,6 @@
-import tqdm
-import copy
-import numpy as np
-import os
-import pickle
 import argparse
-from morabench.utils import setup_seed,accuracy,read_pkl_file, gen_ensemble_matrix,gen_ensemble_result_from_matrix,\
-    pesudo_gen, pesudo_gen_all, Random_Few_shot_change,Few_shot_change,\
-    compute_acc,create_zeros_matrix_same_shape,\
-    sort_dict_by_value_desc
+from morabench.utils import setup_seed
 from morabench.conifg import root_path
-from morabench.evaluation import ranking_correction_comp, optimal_gap_comp
 from morabench.LEMR import LEMR
 from morabench.dataset import Model_set
 ratio_list = [0.0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55,
@@ -26,20 +17,13 @@ args = parser.parse_args()
 dataset_name = args.dataset_name
 setup_seed(args.seed)
 model_hub_path = f'{root_path}/Extracting_information_data/{dataset_name}'
-
 seed = args.seed
 Ensemble_method = args.Ensemble_method
 total_split_number = args.total_split_number
 dataset_name = args.dataset_name
 model_committee_type = args.model_committee_type
-
-
 model_set = Model_set()
 model_set.load_model_set(load_path=model_hub_path)
-
-
-
-
 LEMR(Model_set=model_set,
       seed=seed,
       Ensemble_method=Ensemble_method,
