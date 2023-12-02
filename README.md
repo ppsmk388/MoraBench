@@ -117,17 +117,54 @@ Details of these datasets can be found in our [paper](), and all these model set
 
 # 📙  Quick examples
 
-All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can get its  result by following steps:
+All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result by following steps:
 
-### Generate Ranking Correction and Optimal Gap
+### Generate plot data
 
-#### 1. Generate 50 sets of randomized splits for dataset `amazon_review_250_0`:
+
+
+#### 1. Generate plot data for prompt selection setting:
+
+We can directly run . /examples/run.sh
 
 ```sh
-python ./morabench/generate_split.py --dataset_name amazon_review_250_0 --split_num 50 
+bash ./examples/LEMR/run.sh num_split
 ```
 
-#### 2. Calculate the optical gap and ranking correction for different budget ratio for dataset `amazon_review_250_0`:
+where num_split is the number of splits generated and if not entered, the default is 50.
+
+Here are the details of `run.sh`
+
+```sh
+#!/bin/bash
+
+
+# Set the default value to 50
+total_split_number=50
+
+# If the command line parameter is given, use that
+if [ ! -z "$1" ]; then
+    total_split_number=$1
+fi
+
+for Ensemble_method in hard soft
+do
+    for dataset_name in  story  wsc cb rte wic anli1 anli2 anli3
+    do
+        for model_committee_type in z_score all_model
+        do
+            python split_data_merge_all_model.py 
+            --Ensemble_method $Ensemble_method              # ensemble method, hard or soft
+            --dataset_name $dataset_name                    # dataset name
+            --total_split_number $total_split_number        # total split number we used
+            --total_split_number $model_committee_type      # model committee selection type, z_score or all_model
+        done
+    done
+done
+
+```
+
+<!-- #### 2. Calculate the optical gap and ranking correction for different budget ratio for dataset `amazon_review_250_0`:
 
 ```sh
 python ./examples/LEMR/main.py 
@@ -136,13 +173,15 @@ python ./examples/LEMR/main.py
             --dataset_name amazon_review_250_0  # dataset name
             --model_committee_type z_score      # model committee selection type, z_score or all_model
             --seed 0
-```
+``` -->
 
-#### 3. Results visualization
+#### 2. Results visualization
 
 ```sh
-python MoraBench/morabench/plot_result.py --metric rc # rc for ranking correction and og for optimal gap
+python ./examples/LEMR/lemr_show_result.py --metric rc # rc for ranking correction and og for optimal gap
 ```
+
+
 
 ## 📧  Contact
 
