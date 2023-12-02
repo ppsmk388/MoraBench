@@ -24,6 +24,8 @@ If you find this repository helpful, feel free to cite our publication:
 
 ## 🔧 Installation
 
+### Using conda
+
 [1] Install anaconda:
 Instructions here: https://www.anaconda.com/download/
 
@@ -40,6 +42,13 @@ cd MoraBench
 conda env create -f environment.yml
 source activate MoraBench
 ```
+
+### Using pip
+
+```
+pip install -r requirements.txt
+```
+
 
 <!-- If this not working or you want to use only a subset of modules of Wrench, check out this [wiki page](https://github.com/JieyuZ2/wrench/wiki/Environment-Installation) -->
 
