@@ -8,7 +8,7 @@ class Model_set():
         self.dataset_matrix_set = None
         self.Model_result_dict = {}
         self.result_distribution = {}
-        
+
     def load_model_set(self, load_path):
         with open(load_path, 'rb') as file:
             self.dataset_matrix_set = pickle.load(file)

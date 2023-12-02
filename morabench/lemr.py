@@ -7,8 +7,7 @@ from morabench.utils import setup_seed,read_pkl_file,\
     compute_acc,create_zeros_matrix_same_shape,\
     sort_dict_by_value_desc,plot_ratio_lines
 from morabench.evaluation import ranking_correction_comp, optimal_gap_comp
-from morabench.conifg import root_path, ensemble_map,unc_method_map,\
-    usb_dataset_dict_map,usb_dataset_dict
+from morabench.conifg import *
 import matplotlib.gridspec as gridspec
 import copy
 import matplotlib.pyplot as plt
