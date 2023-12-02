@@ -170,7 +170,7 @@ def LEMR(Model_set, seed, Ensemble_method, total_split_number, dataset_name,mode
 
 
 
-def LEMR_plot(metric_type,seed):
+def lemr_show(metric_type,seed):
 
     Ensemble_method_list = ['hard', 'soft']
     dataset_dict_map = usb_dataset_dict_map

@@ -1,5 +1,5 @@
 import argparse
-from morabench.LEMR import LEMR_plot
+from morabench.LEMR import lemr_show
 
 
 parser = argparse.ArgumentParser()
@@ -8,4 +8,4 @@ parser.add_argument("--seed", type=int,default=0, help="seed")
 args = parser.parse_args()
 metric = args.metric
 seed = args.seed
-LEMR_plot(metric_type=metric,seed=seed)
+lemr_show(metric_type=metric,seed=seed)
