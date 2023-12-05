@@ -6,6 +6,7 @@ This folder contains the current algorithms and framework that use MoraBench.
 
 LEMR is a novel framework that minimizes the need for costly annotations in model selection by strategically annotating instances from an unlabeled validation set.
 
+This is the framework of our LEMR:
 
 <h1 style="text-align:center">
 <img style="vertical-align:middle"  src="../images/lemr.png" />
