@@ -15,8 +15,8 @@ do
     do
         for model_committee_type in z_score all_model
         do
-            echo split_data_merge_all_model.py --Ensemble_method $Ensemble_method --dataset_name $dataset_name --total_split_number $total_split_number   --total_split_number $model_committee_type
-            python split_data_merge_all_model.py --Ensemble_method $Ensemble_method --dataset_name $dataset_name --total_split_number $total_split_number   --total_split_number $model_committee_type
+            echo run_lemr.py --Ensemble_method $Ensemble_method --dataset_name $dataset_name --total_split_number $total_split_number   --total_split_number $model_committee_type
+            python run_lemr.py --Ensemble_method $Ensemble_method --dataset_name $dataset_name --total_split_number $total_split_number   --total_split_number $model_committee_type
         done
     done
 done
