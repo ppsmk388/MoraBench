@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 import copy
 import pickle
 from typing import Any, Optional
-from morabench import base_rank_method
+from morabench import rank_base_method
 from morabench.model_set import Model_set
 
-class LEMR(base_rank_method):
+class LEMR(rank_base_method):
     def __init__(self,
                  model_set_path:Optional[str] = '',
                  seed: Optional[int] = 0,
