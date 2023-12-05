@@ -154,7 +154,7 @@ do
     do
         for model_committee_type in z_score all_model
         do
-            python split_data_merge_all_model.py 
+            python run_lemr.py 
             --Ensemble_method $Ensemble_method              # ensemble method, hard or soft
             --dataset_name $dataset_name                    # dataset name
             --total_split_number $total_split_number        # total split number we used
