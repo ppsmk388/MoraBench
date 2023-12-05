@@ -32,7 +32,6 @@ lemr = LEMR(model_set_path=model_hub_path,
             dataset_name=dataset_name,
             model_committee_type=model_committee_type,
             result_save_path=result_save_path
-
             )
 
 lemr.rank()
