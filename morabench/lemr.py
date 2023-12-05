@@ -75,7 +75,7 @@ class LEMR(rank_base_method):
         with open(f'{result_save_path}draw_image_data.pkl', 'wb') as f:
             pickle.dump(result_data, f)
 
-    def metric_value_compute(self):
+    def metric_value_compute(self) -> None:
         seed = self.input_hyperparas['seed']
         Ensemble_method = self.input_hyperparas['Ensemble_method']
         total_split_number = self.input_hyperparas['total_split_number']
@@ -197,12 +197,12 @@ class LEMR(rank_base_method):
         self.result_data_dict['optimal_gap']=og_dict
         self.result_data_dict['ranking_correction'] = rc_dict
 
-    def rank(self, *args: Any, **kwargs: Any):
+    def rank(self, *args: Any, **kwargs: Any) -> None:
         self.load()
         self.metric_value_compute()
         self.save()
 
-def lemr_show(metric_type,seed):
+def lemr_show(metric_type,seed) -> None:
     Ensemble_method_list = ['hard', 'soft']
     dataset_dict_map = usb_dataset_dict_map
     dataset_dict = usb_dataset_dict

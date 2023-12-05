@@ -8,11 +8,11 @@ class Model_set():
         self.Model_result_dict = {}
         self.result_distribution = {}
 
-    def load_model_set(self, load_path):
+    def load_model_set(self, load_path) -> None:
         with open(load_path, 'rb') as file:
             self.dataset_matrix_set = pickle.load(file)
 
-    def gen_distribute(self, dataset_name, Ensemble_method):
+    def gen_distribute(self, dataset_name, Ensemble_method) -> None:
         Soft_ensemble_dict = copy.deepcopy(self.dataset_matrix_set[dataset_name]['Soft_ensemble_dict'])
         Hard_ensemble_dict = copy.deepcopy(self.dataset_matrix_set[dataset_name]['Hard_ensemble_dict'])
         Soft_ensemble_matrix = gen_ensemble_matrix(Soft_ensemble_dict)

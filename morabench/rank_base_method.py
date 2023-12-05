@@ -8,7 +8,7 @@ class BaseModel(ABC):
         pass
 
     @abstractmethod
-    def rank(self, model_set, split=None,*args: Any, **kwargs: Any):
+    def rank(self, model_set, split=None,*args: Any, **kwargs: Any) -> None:
         """Abstract method for ranking model set.
 
         Parameters
