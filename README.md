@@ -41,36 +41,23 @@ pip install -r requirements.txt
 
 <!-- If this not working or you want to use only a subset of modules of Wrench, check out this [wiki page](https://github.com/JieyuZ2/wrench/wiki/Environment-Installation) -->
 
-
 ## 📊 Available Model-sets
 
 MoraBench assembles outputs from models operating under different learning paradigms:
-
 
 ### Weak Supervision:
 
 We generated model outputs within a weak supervision setting using the [WRENCH](https://github.com/JieyuZ2/wrench) framework. We generate model outputs across 48 distinct weak supervision configurations on five datasets: SMS, AGNews, Yelp, IMDB, Trec.
 
-
-
 ### Semi-supervised Learning:
 
-Leveraging the [USB](http://github.com/microsoft/Semi-supervised-learning) benchmark, model outputs were obtained from 12 semi-supervised methods across five datasets: IMDB, Amazon Review, Yelp Review, AGNews and Yahoo! Answer. 
-
-
-
+Leveraging the [USB](http://github.com/microsoft/Semi-supervised-learning) benchmark, model outputs were obtained from 12 semi-supervised methods across five datasets: IMDB, Amazon Review, Yelp Review, AGNews and Yahoo! Answer.
 
 ### Prompt Selection:
 
 We employed large language models and various prompts to generate diverse outputs, assessed using the [T0](http://github.com/bigscience-workshop/T0) benchmark.
 
-
-
-
-
-
 The table below shows the initial model set included in MoraBench and the total size of the validation set plus the test set, i.e., **\# Data**.  The number after the dataset of Semi-supervised Learning indicates the number of labels used in semi-supervised training stage.
-
 
 |     Training Setting     	|            Task Type        	|        Dataset       	| Model Number 	| # Data 	|
 |:------------------------:	|:--------------------------:	|:--------------------:	|:------------:	|:------:	|
@@ -87,7 +74,7 @@ The table below shows the initial model set included in MoraBench and the total 
 |                          	|  sentiment classification  	|   Yelp Review (250)  	|      400     	|  25000 	|
 |                          	|  sentiment classification  	|  Yelp Review (1000)  	|      400     	|  25000 	|
 |                          	|  sentiment classification  	|  Amazon Review (250) 	|      400     	|  25000 	|
-|                          	|  Sentiment Classification  	| Amazon Review (1000) 	|      400     	|  25000 	|
+|                          	|  Sentiment Classification  	| Amazon Review (1000) |      400     	|  25000 	|
 |                          	|    Topic Classification    	|  Yahoo! Answer (500) 	|      400     	|  50000 	|
 |                          	|    Topic Classification    	| Yahoo! Answer (2000) 	|      400     	|  50000 	|
 |                          	|    Topic Classification    	|      AGNews (40)     	|      400     	|  10000 	|
@@ -103,26 +90,12 @@ The table below shows the initial model set included in MoraBench and the total 
 |                          	| Natural language Inference 	|         ANLI2        	|      15      	|  1000  	|
 |                          	| Natural language Inference 	|         ANLI3        	|      15      	|  1200  	|
 
-
-
 Details of these datasets can be found in our [paper](https://arxiv.org/abs/2312.01619), and all these model sets can be downloaded via [this](https://drive.google.com/drive/folders/1_iPhZXG_Vrcgm1Dect3N0iMUZpboYebp?usp=sharing). We plan to add more model set soon.
-
-
-
-
-
-
-
-
 
 # 📙  Quick examples
 
-All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples). 
+All example code can be found in [this](https://github.com/ppsmk388/MoraBench/tree/main/examples).
 For example, for [LEMR framework](https://github.com/ppsmk388/MoraBench/tree/main/examples/LEMR/), we can show its result of prompt selection setting by following steps:
-
-
-
-
 
 ### 1. Generate plot data:
 
@@ -181,8 +154,6 @@ python ./examples/LEMR/main.py
 ```sh
 python ./examples/LEMR/show_lemr.py --metric rc # rc for ranking correction and og for optimal gap
 ```
-
-
 
 ## 📧  Contact
 
