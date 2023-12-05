@@ -179,7 +179,7 @@ python ./examples/LEMR/main.py
 ### 2. Results visualization
 
 ```sh
-python ./examples/LEMR/lemr_show_result.py --metric rc # rc for ranking correction and og for optimal gap
+python ./examples/LEMR/show_lemr.py --metric rc # rc for ranking correction and og for optimal gap
 ```
 
 
