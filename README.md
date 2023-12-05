@@ -4,13 +4,15 @@
 <img style="vertical-align:middle" width="200" height="200" src="./images/MoraBench_logo.png" />
 </h1>
 
+**Check out the [paper](https://arxiv.org/abs/2312.01619)!!**
+
 ## 🤔 What is it?
 
-**MoraBench** (**Mo**del **Ra**nking **Bench**mark) is a **benchmark platform** comprises a collection of model outputs generated under diverse scenarios. It also provides a **common and easy framework**, for development and evaluation of your own model ranking method within the benchmark.
+**MoraBench** (**Mo**del **Ra**nking **Bench**mark) is a **benchmark platform** that comprises a collection of model outputs generated under diverse scenarios. It also provides a **common and easy framework**, for the development and evaluation of your own model ranking method within the benchmark.
 
 ## 🏁 What is model ranking?
 
-**Model Ranking** is to rank models from a set of **trained models** according to their performance for the target task. Traditionally, people use a **fully-labeled validation set** to rank the models, here we explore how to do model ranking with limited annotation budget.
+**Model Ranking** is to rank models from a set of **trained models** according to their performance for the target task. Traditionally, people use a **fully-labeled validation set** to rank the models, here we explore how to do model ranking with a limited annotation budget.
 
 ## 🔧 Installation
 
@@ -167,7 +169,7 @@ We're also open to any collaboration!
 
 We sincerely welcome any contribution to the methods or model set!
 
-## 👆  Citattion
+## 👆  Citation
 
 ```
 @inproceedings{Hu2023HowMV,
