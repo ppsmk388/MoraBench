@@ -5,10 +5,10 @@
 </h1>
 
 <!-- **Check out the [paper](https://arxiv.org/abs/2312.01619)!!** -->
+
 **Check out the paper:**
 
 ⭐ [How Many Validation Labels Do You Need? Exploring the Design Space of Label-Efficient Model Ranking](https://arxiv.org/abs/2312.01619)
-
 
 ## 🤔 What is it?
 
