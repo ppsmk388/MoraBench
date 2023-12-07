@@ -13,10 +13,10 @@ This is the framework of our LEMR:
 </h1>
 
 ```
-@inproceedings{Hu2023HowMV,
+@article{hu2023many,
   title={How Many Validation Labels Do You Need? Exploring the Design Space of Label-Efficient Model Ranking},
-  author={Zhengyu Hu and Jieyu Zhang and Yue Yu and Yuchen Zhuang and Hui Xiong},
-  year={2023},
-  url={https://api.semanticscholar.org/CorpusID:265610019}
+  author={Hu, Zhengyu and Zhang, Jieyu and Yu, Yue and Zhuang, Yuchen and Xiong, Hui},
+  journal={arXiv preprint arXiv:2312.01619},
+  year={2023}
 }
 ```
